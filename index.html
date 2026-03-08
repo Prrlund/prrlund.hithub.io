@@ -5,226 +5,1462 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plund Media</title>
 
+  <!--
+  =============================================
+  TYPSNITT (FONT)
+  =============================================
+  Här laddar vi in typsnittet "DM Sans" från Google Fonts.
+  Det är modernt, clean och liknar Satoshi.
+  Du behöver inte ändra något här.
+  =============================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <!--
+  =============================================
+  CSS - ALL STYLING BÖRJAR HÄR
+  Allt som bestämmer hur sidan SER UT
+  (färger, storlekar, avstånd, animationer)
+  =============================================
+  -->
   <style>
+
+    /* =============================================
+       GLOBALA INSTÄLLNINGAR
+       Här sätter vi grundregler för HELA sidan.
+       CSS-variabler gör det enkelt att ändra
+       färger på ett enda ställe.
+    ============================================= */
+    :root {
+      --bakgrund:      #0a0a0a;   /* Sidans bakgrundsfärg (nästan svart) */
+      --yta:           #111111;   /* Kortens bakgrundsfärg (lite ljusare svart) */
+      --yta-hover:     #1a1a1a;   /* Kortens färg när du hovrar */
+      --kant:          #222222;   /* Linjefärg (diskret grå) */
+      --text-huvud:    #f0f0f0;   /* Huvudtext (nästan vit) */
+      --text-dimpad:   #888888;   /* Dimpad text (grå) */
+      --accent:        #e8d5b0;   /* Accentfärg (varm beige/guld) */
+      --accent-mjuk:   rgba(232, 213, 176, 0.08); /* Mjuk accentbakgrund */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: smooth; /* Mjuk scrollning när du klickar nav-länkarna */
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f10;
-      color: white;
-      line-height: 1.6;
+      background-color: var(--bakgrund);
+      color: var(--text-huvud);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 15, 16, 0.95);
-      border-bottom: 1px solid #222;
-    }
-
-    .nav {
+    /* Begränsar innehållets bredd och centrerar det */
+    .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      padding: 0 24px;
     }
 
+    /* Alla sektioner har lite luft ovanför och under */
+    section {
+      padding: 100px 0;
+    }
+
+    /* =============================================
+       HEADER / NAVBAR - STYLING
+    ============================================= */
+    header {
+      position: fixed;           /* Headern sitter kvar uppe när du scrollar */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;             /* Ligger ovanpå allt annat */
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(16px); /* Skapar "frostat glas"-effekten */
+      border-bottom: 1px solid var(--kant);
+      padding: 18px 0;
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Logo vänster, nav mitten, ikoner höger */
+    }
+
+    /* Logotypen "Plund Media" */
     .logo {
-      font-size: 28px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .menu {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .menu a {
-      color: white;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-huvud);
       text-decoration: none;
-      font-size: 16px;
-      opacity: 0.85;
     }
 
-    .menu a:hover {
-      opacity: 1;
+    .logo span {
+      color: var(--accent); /* "Media"-delen i accentfärg */
     }
 
-    .socials {
+    /* Navigationslänkarna i mitten */
+    nav {
       display: flex;
-      gap: 14px;
+      gap: 32px;
+    }
+
+    nav a {
+      color: var(--text-dimpad);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-huvud);
+    }
+
+    /* Social ikoner till höger i headern */
+    .social-icons {
+      display: flex;
+      gap: 16px;
       align-items: center;
     }
 
-    .socials a {
-      display: inline-flex;
+    .social-icons a {
+      color: var(--text-dimpad);
+      text-decoration: none;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--kant);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .social-icons svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* =============================================
+       HERO SECTION - STYLING
+    ============================================= */
+    #hero {
+      padding-top: 180px;
+      padding-bottom: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dekorativt suddigt ljussken i bakgrunden */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 213, 176, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-etikett {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(232, 213, 176, 0.3);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero-rubrik {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Anpassar sig till skärmstorlek */
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .hero-rubrik em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-text {
+      font-size: 1.1rem;
+      color: var(--text-dimpad);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    /* Knappen "Boka möte" */
+    .hero-knappar {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .knapp-primär {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      padding: 16px 32px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .knapp-primär:hover {
+      background: #f5e4c4;
+      transform: translateY(-1px);
+    }
+
+    /* =============================================
+       PORTFOLIO SECTION - STYLING
+    ============================================= */
+    #portfolio {
+      border-top: 1px solid var(--kant);
+    }
+
+    .sektion-rubrik {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .sektion-titel {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .sektion-beskrivning {
+      color: var(--text-dimpad);
+      max-width: 500px;
+      margin-bottom: 56px;
+    }
+
+    /* Carousel-containern */
+    .carousel-wrapper {
+      position: relative;
+    }
+
+    /* Det här är "fönstret" - man ser bara det som passar in */
+    .carousel-fönster {
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    /* Det här är "bandet" som glider i sidled */
+    .carousel-band {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Varje videokort i carouselen */
+    .video-kort {
+      flex: 0 0 320px;       /* Varje kort är 320px brett och krymper inte */
+      background: var(--yta);
+      border: 1px solid var(--kant);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .video-kort:hover {
+      border-color: rgba(232, 213, 176, 0.3);
+    }
+
+    /* Platsen där embed-koden läggs */
+    .video-embed-plats {
+      width: 100%;
+      aspect-ratio: 9/16;    /* TikTok-format (stående video) */
+      background: #0f0f0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Placeholder-text när ingen embed lagts in ännu */
+    .video-placeholder {
+      text-align: center;
+      color: var(--text-dimpad);
+      padding: 24px;
+    }
+
+    .video-placeholder .play-ikon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--kant);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .video-placeholder .play-ikon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--text-dimpad);
+      margin-left: 3px;
+    }
+
+    .video-info {
+      padding: 20px;
+    }
+
+    .video-info h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: var(--text-dimpad);
+    }
+
+    /* Pilar för att navigera carouselen */
+    .carousel-pilar {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .carousel-pil {
+      width: 48px;
+      height: 48px;
+      background: var(--yta);
+      border: 1px solid var(--kant);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-huvud);
+    }
+
+    .carousel-pil:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .carousel-pil svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* =============================================
+       OM MIG SECTION - STYLING
+    ============================================= */
+    #om-mig {
+      border-top: 1px solid var(--kant);
+    }
+
+    .om-mig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .om-mig-text p {
+      color: var(--text-dimpad);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .om-mig-text p strong {
+      color: var(--text-huvud);
+      font-weight: 600;
+    }
+
+    /* Faktakorten (de tre lådorna med siffror) */
+    .fakta-kort-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fakta-kort {
+      background: var(--yta);
+      border: 1px solid var(--kant);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+
+    .fakta-kort:hover {
+      border-color: rgba(232, 213, 176, 0.25);
+    }
+
+    .fakta-kort.stor {
+      grid-column: span 2; /* Det breda kortet tar upp båda kolumnerna */
+    }
+
+    .fakta-siffra {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .fakta-etikett {
+      font-size: 0.85rem;
+      color: var(--text-dimpad);
+    }
+
+    /* =============================================
+       KONTAKT SECTION - STYLING
+    ============================================= */
+    #kontakt {
+      border-top: 1px solid var(--kant);
+    }
+
+    .kontakt-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .kontakt-text .stor-rubrik {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .kontakt-text .stor-rubrik em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .kontakt-text p {
+      color: var(--text-dimpad);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .kontakt-info-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .kontakt-rad {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--yta);
+      border: 1px solid var(--kant);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: var(--text-huvud);
+      transition: all 0.2s;
+    }
+
+    .kontakt-rad:hover {
+      border-color: var(--accent);
+    }
+
+    .kontakt-ikon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-mjuk);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kontakt-ikon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .kontakt-rad-text small {
+      font-size: 0.75rem;
+      color: var(--text-dimpad);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .kontakt-rad-text span {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Calendly-platsen */
+    .calendly-plats {
+      background: var(--yta);
+      border: 1px dashed var(--kant);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .calendly-plats p {
+      color: var(--text-dimpad);
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    .calendly-plats-ikon {
+      width: 56px;
+      height: 56px;
+      background: var(--accent-mjuk);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .calendly-plats-ikon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .calendly-plats h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* =============================================
+       CALENDLY MODAL (popup) - STYLING
+    ============================================= */
+    .modal-bakgrund {
+      display: none;           /* Dold som standard */
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-bakgrund.aktiv {
+      display: flex;           /* Visas när knappen klickas */
+    }
+
+    .modal-box {
+      background: var(--yta);
+      border: 1px solid var(--kant);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 560px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+
+    .modal-stäng {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none;
+      border: 1px solid var(--kant);
+      color: var(--text-dimpad);
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-stäng:hover {
+      border-color: var(--text-huvud);
+      color: var(--text-huvud);
+    }
+
+    .modal-box h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .modal-box p {
+      color: var(--text-dimpad);
+      margin-bottom: 32px;
+      font-size: 0.95rem;
+    }
+
+    /* Lådan inuti modalen där Calendly-koden klistras in */
+    #calendly-embed-plats {
+      background: #0a0a0a;
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px dashed var(--kant);
+      min-height: 200px;
+      display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .socials img {
-      width: 22px;
-      height: 22px;
-      filter: invert(1);
-      opacity: 0.85;
-      transition: opacity 0.2s ease;
+    #calendly-embed-plats p {
+      color: var(--text-dimpad);
+      font-size: 0.85rem;
+      margin-bottom: 0;
     }
 
-    .socials img:hover {
-      opacity: 1;
+    /* =============================================
+       FOOTER - STYLING
+    ============================================= */
+    footer {
+      border-top: 1px solid var(--kant);
+      padding: 48px 0;
     }
 
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 24px;
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: 34px;
-      margin-bottom: 16px;
-    }
-
-    p {
-      font-size: 20px;
-      color: #d0d0d0;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 14px 22px;
-      background: white;
-      color: black;
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-huvud);
       text-decoration: none;
-      border-radius: 12px;
-      font-weight: bold;
+      letter-spacing: -0.02em;
     }
 
-    .section {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid #2a2a2a;
+    .footer-logo span {
+      color: var(--accent);
     }
 
-    .card {
-      background: #17181a;
-      padding: 18px;
-      border-radius: 16px;
-      margin-top: 16px;
-    }
-
-    .card a {
-      color: white;
-    }
-
-    .footer {
-      border-top: 1px solid #222;
-      margin-top: 80px;
-      padding: 40px 24px;
+    .footer-info {
+      font-size: 0.85rem;
+      color: var(--text-dimpad);
       text-align: center;
-      color: #aaa;
     }
 
-    .footer p {
-      margin: 8px 0;
-      font-size: 16px;
-      color: #aaa;
+    .footer-info a {
+      color: var(--text-dimpad);
+      text-decoration: none;
     }
 
-    @media (max-width: 700px) {
-      h1 {
-        font-size: 38px;
+    .footer-info a:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-dimpad);
+      opacity: 0.6;
+    }
+
+    /* =============================================
+       RESPONSIV DESIGN (för telefoner)
+       Reglerna här gäller bara på små skärmar.
+    ============================================= */
+    @media (max-width: 768px) {
+      nav { display: none; } /* Göm nav på mobil (kan byggas ut med hamburger-meny) */
+
+      .om-mig-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
 
-      .nav {
-        align-items: flex-start;
+      .kontakt-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
 
-      .menu {
-        width: 100%;
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
       }
 
-      .socials {
-        width: 100%;
+      .video-kort {
+        flex: 0 0 260px;
       }
     }
+
   </style>
 </head>
+
 <body>
 
-  <header class="header">
-    <div class="nav">
-      <div class="logo">Plund Media 🔎</div>
+<!-- =============================================
+  HÄR BÖRJAR HEADERN
+  Den sitter fast uppe på sidan hela tiden.
+============================================= -->
+<header>
+  <div class="container">
+    <div class="header-inner">
 
-      <div class="menu">
+      <!-- Logotypen längst till vänster -->
+      <a href="#hero" class="logo">Plund <span>Media</span></a>
+
+      <!-- Navigeringslänkarna i mitten -->
+      <nav>
         <a href="#portfolio">Portfolio</a>
-        <a href="#about">Om mig</a>
-        <a href="#contact">Kontakt</a>
-      </div>
+        <a href="#om-mig">Om mig</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
 
-      <div class="socials">
-        <a href="https://instagram.com/prrlund" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+      <!-- Social-ikoner till höger -->
+      <div class="social-icons">
+
+        <!--
+        =============================================
+        HÄR ÄNDRAR DU DIN INSTAGRAM-LÄNK
+        Byt ut "prrlund" mot ditt Instagram-användarnamn
+        =============================================
+        -->
+        <a href="https://www.instagram.com/prrlund" target="_blank" title="Instagram">
+          <!-- Instagram-ikon (SVG) -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
         </a>
 
-        <a href="https://tiktok.com/@prrlund" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" alt="TikTok">
+        <!--
+        =============================================
+        HÄR ÄNDRAR DU DIN TIKTOK-LÄNK
+        Byt ut "prrlund" mot ditt TikTok-användarnamn
+        =============================================
+        -->
+        <a href="https://www.tiktok.com/@prrlund" target="_blank" title="TikTok">
+          <!-- TikTok-ikon (SVG) -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/>
+          </svg>
         </a>
+
       </div>
     </div>
-  </header>
+  </div>
+</header>
+<!-- HÄR SLUTAR HEADERN -->
 
-  <main>
-    <div class="wrap">
-      <h1>Plund Media 🔎</h1>
-      <p>Underhållande videos där företag blir intressanta på riktigt.</p>
-      <p>Jag besöker företag, testar jobbet och visar vad som egentligen händer bakom kulisserna.</p>
 
-      <a class="btn" href="mailto:par@plundmedia.com">Kontakta mig</a>
+<!-- =============================================
+  HÄR BÖRJAR HERO-SEKTIONEN
+  Det är det stora välkomstblocket överst på sidan.
+============================================= -->
+<section id="hero">
+  <div class="container">
 
-      <div class="section" id="portfolio">
-        <h2>Portfolio</h2>
+    <!-- Liten etikett-text ovanför rubriken -->
+    <div class="hero-etikett">Bakom kulisserna-content</div>
 
-        <div class="card">
-          <strong>Reload Vending</strong>
-          <p>Pär utforskar hur vending machines egentligen funkar.</p>
-          <a href="#">Lägg in videolänk här</a>
+    <!-- Den stora rubriken -->
+    <h1 class="hero-rubrik">
+      Företagets sanna historia<br/>
+      förtjänar att <em>berättas.</em>
+    </h1>
+
+    <!-- Kortare beskrivningstext under rubriken -->
+    <p class="hero-text">
+      Hej, jag heter Pär och jag driver Plund Media. Jag är genuint nyfiken på hur
+      företag fungerar, varför de finns och vilka människor som bygger dem. Mitt mål
+      är enkelt: visa mer än en produkt. Visa storyn. Visa människorna. Visa äktheten.
+    </p>
+
+    <!-- Knapp som öppnar Calendly-modalen -->
+    <div class="hero-knappar">
+      <button class="knapp-primär" onclick="öppnaModal()">
+        Boka möte →
+      </button>
+    </div>
+
+  </div>
+</section>
+<!-- HÄR SLUTAR HERO-SEKTIONEN -->
+
+
+<!-- =============================================
+  HÄR BÖRJAR PORTFOLIO-SEKTIONEN
+  Här visas dina videor i en horisontell carousel.
+============================================= -->
+<section id="portfolio">
+  <div class="container">
+
+    <p class="sektion-rubrik">Mina videos</p>
+    <h2 class="sektion-titel">Portfolio</h2>
+    <p class="sektion-beskrivning">
+      Bakom kulisserna-videos där jag utforskar företag som en nyfiken outsider.
+    </p>
+
+    <!-- Carousel-wrapper (omsluter hela slidern) -->
+    <div class="carousel-wrapper">
+
+      <!-- Fönstret som döljer det som inte syns -->
+      <div class="carousel-fönster">
+
+        <!-- Bandet som glider i sidled när du klickar pilarna -->
+        <div class="carousel-band" id="carousel-band">
+
+
+          <!--
+          =============================================
+          VIDEO-KORT 1: RELOAD VENDING
+          =============================================
+          Så här fungerar ett video-kort:
+          1. ".video-embed-plats" är rutan där videon visas.
+          2. Ta bort <div class="video-placeholder">...</div>
+          3. Klistra in din TikTok eller Instagram embed-kod istället.
+          4. ".video-info" är texten under videon.
+
+          SE GUIDEN LÄNGST NER I FILEN FÖR STEG-FÖR-STEG.
+          =============================================
+          -->
+          <div class="video-kort">
+            <div class="video-embed-plats">
+
+              <!--
+              =============================================
+              HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 1)
+
+              GÖR SÅ HÄR:
+              1. Gå till TikTok.com och hitta videon om Reload Vending
+              2. Klicka på "..." (dela) och välj "Embed"
+              3. Kopiera all kod (börjar med <blockquote...>)
+              4. Ta bort de fem raderna med "video-placeholder" nedan
+              5. Klistra in TikTok-koden här
+
+              ALTERNATIVT - INSTAGRAM EMBED:
+              1. Gå till Instagram och öppna ditt inlägg
+              2. Klicka på "..." och välj "Embed"
+              3. Kopiera koden (börjar med <blockquote class="instagram-media"...)
+              4. Klistra in den här istället
+              =============================================
+              -->
+
+              <!-- Placeholder visas tills du klistrar in riktig embed-kod -->
+              <div class="video-placeholder">
+                <div class="play-ikon">
+                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <p style="font-size:0.85rem;">Reload Vending<br/><span style="font-size:0.75rem; opacity:0.5;">Klistra in embed-kod här</span></p>
+              </div>
+
+            </div>
+            <div class="video-info">
+              <h3>Reload Vending</h3>
+              <p>Bakom kulisserna hos en av Stockholms snabbast växande vending-bolag.</p>
+            </div>
+          </div>
+          <!-- SLUT PÅ VIDEO-KORT 1 -->
+
+
+          <!--
+          =============================================
+          VIDEO-KORT 2 (EXEMPEL / INAKTIVT)
+
+          NÄR DU VILL LÄGGA TILL EN NY VIDEO:
+          1. Kopiera allt från "<!-- VIDEO-KORT 2 BÖRJAR -->"
+             till "<!-- SLUT PÅ VIDEO-KORT 2 -->"
+          2. Klistra in kopian efter det sista kortet
+          3. Ändra titeln och texten
+          4. Klistra in din nya embed-kod
+          =============================================
+          -->
+          <!-- VIDEO-KORT 2 BÖRJAR -->
+          <div class="video-kort">
+            <div class="video-embed-plats">
+
+              <!--
+              =============================================
+              HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 2)
+              Se instruktionerna vid Video-kort 1 ovan.
+              =============================================
+              -->
+
+              <div class="video-placeholder">
+                <div class="play-ikon">
+                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <p style="font-size:0.85rem;">Video 2<br/><span style="font-size:0.75rem; opacity:0.5;">Klistra in embed-kod här</span></p>
+              </div>
+
+            </div>
+            <div class="video-info">
+              <!--
+              Ändra titeln och beskrivningen till din nästa video
+              -->
+              <h3>Video 2 – Titel</h3>
+              <p>Kort beskrivning av videon.</p>
+            </div>
+          </div>
+          <!-- SLUT PÅ VIDEO-KORT 2 -->
+
+
+          <!-- VIDEO-KORT 3 BÖRJAR -->
+          <div class="video-kort">
+            <div class="video-embed-plats">
+
+              <!--
+              =============================================
+              HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 3)
+              =============================================
+              -->
+
+              <div class="video-placeholder">
+                <div class="play-ikon">
+                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <p style="font-size:0.85rem;">Video 3<br/><span style="font-size:0.75rem; opacity:0.5;">Klistra in embed-kod här</span></p>
+              </div>
+
+            </div>
+            <div class="video-info">
+              <h3>Video 3 – Titel</h3>
+              <p>Kort beskrivning av videon.</p>
+            </div>
+          </div>
+          <!-- SLUT PÅ VIDEO-KORT 3 -->
+
+
+          <!-- VIDEO-KORT 4 BÖRJAR -->
+          <div class="video-kort">
+            <div class="video-embed-plats">
+
+              <!--
+              =============================================
+              HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 4)
+              =============================================
+              -->
+
+              <div class="video-placeholder">
+                <div class="play-ikon">
+                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <p style="font-size:0.85rem;">Video 4<br/><span style="font-size:0.75rem; opacity:0.5;">Klistra in embed-kod här</span></p>
+              </div>
+
+            </div>
+            <div class="video-info">
+              <h3>Video 4 – Titel</h3>
+              <p>Kort beskrivning av videon.</p>
+            </div>
+          </div>
+          <!-- SLUT PÅ VIDEO-KORT 4 -->
+
+
+          <!-- VIDEO-KORT 5 BÖRJAR -->
+          <div class="video-kort">
+            <div class="video-embed-plats">
+
+              <!--
+              =============================================
+              HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 5)
+              =============================================
+              -->
+
+              <div class="video-placeholder">
+                <div class="play-ikon">
+                  <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+                <p style="font-size:0.85rem;">Video 5<br/><span style="font-size:0.75rem; opacity:0.5;">Klistra in embed-kod här</span></p>
+              </div>
+
+            </div>
+            <div class="video-info">
+              <h3>Video 5 – Titel</h3>
+              <p>Kort beskrivning av videon.</p>
+            </div>
+          </div>
+          <!-- SLUT PÅ VIDEO-KORT 5 -->
+
+
+        </div>
+        <!-- Slut på carousel-bandet -->
+
+      </div>
+      <!-- Slut på carousel-fönstret -->
+
+      <!-- Pilknapparna under carouselen -->
+      <div class="carousel-pilar">
+
+        <!-- Vänsterpil -->
+        <button class="carousel-pil" onclick="scrollaCarousel(-1)" title="Föregående">
+          <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+
+        <!-- Högerpil -->
+        <button class="carousel-pil" onclick="scrollaCarousel(1)" title="Nästa">
+          <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+
+      </div>
+
+    </div>
+    <!-- Slut på carousel-wrapper -->
+
+  </div>
+</section>
+<!-- HÄR SLUTAR PORTFOLIO-SEKTIONEN -->
+
+
+<!-- =============================================
+  HÄR BÖRJAR OM MIG-SEKTIONEN
+  Här presenterar du dig och idén bakom Plund Media.
+============================================= -->
+<section id="om-mig">
+  <div class="container">
+
+    <div class="om-mig-grid">
+
+      <!-- Vänstersidan: Text -->
+      <div class="om-mig-text">
+        <p class="sektion-rubrik">Vem är jag?</p>
+        <h2 class="sektion-titel">Bakom kameran</h2>
+
+        <p>
+          Jag heter Pär och jag är <strong>genuint nyfiken på hur saker fungerar.</strong>
+          Hur startar ett företag? Varför gör de det de gör? Och vem är egentligen
+          personen bakom det hela?
+        </p>
+
+        <p>
+          Med Plund Media tar jag med mig kameran in bakom kulisserna hos företag
+          och berättar deras historia. <strong>Inte som reklam, utan som reportage.</strong>
+          Autentiskt, personligt och underhållande.
+        </p>
+
+        <p>
+          Det handlar om mer än produkter. Det handlar om <strong>människorna,
+          besluten, misslyckandena och framgångarna</strong> som ingen annars ser.
+        </p>
+      </div>
+
+      <!-- Högersidan: Faktakort -->
+      <div class="fakta-kort-grid">
+
+        <div class="fakta-kort">
+          <div class="fakta-siffra">100%</div>
+          <div class="fakta-etikett">Autentiskt content — ingen manus, ingen reklam-känsla</div>
+        </div>
+
+        <div class="fakta-kort">
+          <div class="fakta-siffra">BtS</div>
+          <div class="fakta-etikett">Bakom kulisserna — det folk faktiskt vill se</div>
+        </div>
+
+        <div class="fakta-kort stor">
+          <div class="fakta-siffra">Din story</div>
+          <div class="fakta-etikett">Varje video är unik — byggd kring ditt företag och din historia</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- HÄR SLUTAR OM MIG-SEKTIONEN -->
+
+
+<!-- =============================================
+  HÄR BÖRJAR KONTAKT-SEKTIONEN
+============================================= -->
+<section id="kontakt">
+  <div class="container">
+
+    <div class="kontakt-inner">
+
+      <!-- Vänstersida: Text och kontaktinfo -->
+      <div class="kontakt-text">
+
+        <p class="sektion-rubrik">Kom igång</p>
+        <h2 class="stor-rubrik">
+          Vill du att jag kommer och gör en video om <em>ert företag?</em>
+        </h2>
+        <p>
+          Hör av dig direkt eller boka ett kort samtal så pratar vi om hur det
+          kan se ut för just ert bolag.
+        </p>
+
+        <div class="kontakt-info-lista">
+
+          <!--
+          =============================================
+          HÄR ÄNDRAR DU DIN MAIL
+          Byt ut "din@mail.se" mot din riktiga e-postadress
+          på BÅDA ställena nedan (i href och i span-taggen)
+          =============================================
+          -->
+          <a href="mailto:din@mail.se" class="kontakt-rad">
+            <div class="kontakt-ikon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="kontakt-rad-text">
+              <small>E-post</small>
+              <span>din@mail.se</span>  <!-- ← ÄNDRA DETTA TILL DIN MAIL -->
+            </div>
+          </a>
+
+          <!--
+          =============================================
+          HÄR ÄNDRAR DU DITT TELEFONNUMMER
+          Byt ut "07X-XXX XX XX" mot ditt riktiga nummer
+          på BÅDA ställena nedan (i href och i span-taggen)
+          OBS: I href ska det bara vara siffror: tel:070XXXXXXX
+          =============================================
+          -->
+          <a href="tel:07XXXXXXXXX" class="kontakt-rad">
+            <div class="kontakt-ikon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 0117 1.18 2 2 0 0119.1 3.17v3a2 2 0 01-1.44 1.93 16 16 0 01-4.4 1.16A16.18 16.18 0 0117 14.4a2 2 0 011.92-1.44z"/></svg>
+            </div>
+            <div class="kontakt-rad-text">
+              <small>Telefon</small>
+              <span>07X-XXX XX XX</span>  <!-- ← ÄNDRA DETTA TILL DITT NUMMER -->
+            </div>
+          </a>
+
         </div>
       </div>
 
-      <div class="section" id="about">
-        <h2>Om mig</h2>
-        <p>Jag heter Pär och bygger Plund Media. Jag gillar att förstå hur företag fungerar och berätta historier om människorna bakom dem.</p>
+      <!-- Högersida: Calendly-plats -->
+      <div>
+
+        <!--
+        =============================================
+        HÄR LÄGGER DU TILL CALENDLY EMBED
+
+        ALTERNATIV A – INLINE EMBED (rekommenderas):
+        1. Logga in på Calendly.com
+        2. Gå till "Share" → "Add to website" → "Inline embed"
+        3. Kopiera koden (ser ut ungefär som:
+           <div class="calendly-inline-widget" data-url="..."></div>
+           <script type="text/javascript" src="https://assets.calendly.com/..."></script>
+        4. Ta bort hela blocket med "calendly-plats" (div + innehåll)
+        5. Klistra in Calendly-koden direkt här
+
+        ALTERNATIV B – KNAPP (enklast):
+        1. Hämta din Calendly-länk (ser ut som: https://calendly.com/dittnamn)
+        2. Ändra href i knappen nere i hero-sektionen
+        =============================================
+        -->
+
+        <div class="calendly-plats">
+          <div class="calendly-plats-ikon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Boka ett samtal</h3>
+          <p>Ersätt den här rutan med din<br/>Calendly embed-kod</p>
+        </div>
+
       </div>
 
-      <div class="section" id="contact">
-        <h2>Kontakt</h2>
-        <p>Vill du att jag kommer och gör en video om ert företag?</p>
-        <a class="btn" href="mailto:par@plundmedia.com">Maila mig</a>
-      </div>
     </div>
-  </main>
 
-  <footer class="footer">
-    <p>© 2026 Plund Media</p>
-    <p>par@plundmedia.com</p>
-  </footer>
+  </div>
+</section>
+<!-- HÄR SLUTAR KONTAKT-SEKTIONEN -->
+
+
+<!-- =============================================
+  HÄR BÖRJAR FOOTERN
+  Den syns längst ner på sidan.
+============================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+
+      <!-- Logotypen i footern -->
+      <a href="#hero" class="footer-logo">Plund <span>Media</span></a>
+
+      <!-- Kontaktinfo i mitten -->
+      <div class="footer-info">
+        <!--
+        =============================================
+        HÄR ÄNDRAR DU MAIL I FOOTERN
+        Byt ut "din@mail.se" mot din e-postadress
+        =============================================
+        -->
+        <a href="mailto:din@mail.se">din@mail.se</a>
+        &nbsp;·&nbsp;
+        <!--
+        =============================================
+        HÄR ÄNDRAR DU TELEFONNUMMER I FOOTERN
+        Byt ut "07X-XXX XX XX" mot ditt nummer
+        =============================================
+        -->
+        <a href="tel:07XXXXXXXXX">07X-XXX XX XX</a>
+      </div>
+
+      <!-- Copyright-text -->
+      <div class="footer-copy">
+        <!--
+        Byt ut årtalet om det behövs
+        -->
+        © 2026 Plund Media
+      </div>
+
+    </div>
+  </div>
+</footer>
+<!-- HÄR SLUTAR FOOTERN -->
+
+
+<!-- =============================================
+  CALENDLY MODAL (popup-fönstret)
+  Det här är rutan som poppar upp när man
+  klickar på "Boka möte"-knappen i hero.
+============================================= -->
+<div class="modal-bakgrund" id="boka-modal">
+  <div class="modal-box">
+
+    <!-- Stäng-knappen (×) i övre högra hörnet -->
+    <button class="modal-stäng" onclick="stängModal()">×</button>
+
+    <h2>Boka ett möte</h2>
+    <p>Välj en tid som passar dig så pratar vi om ditt företag.</p>
+
+    <!--
+    =============================================
+    HÄR KLISTRAR DU IN DIN CALENDLY EMBED-KOD (i modalen)
+
+    GÖR SÅ HÄR:
+    1. Logga in på Calendly.com
+    2. Gå till ditt event → Share → "Add to website"
+    3. Välj "Inline embed"
+    4. Kopiera koden (innehåller <div class="calendly-inline-widget"...>)
+    5. Ta bort <p>-taggen med placeholder-text nedan
+    6. Klistra in din Calendly-kod i div:en med id="calendly-embed-plats"
+    =============================================
+    -->
+    <div id="calendly-embed-plats">
+      <p>Klistra in din Calendly embed-kod här.<br/>Se guiden i koden ovan.</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =============================================
+  JAVASCRIPT - ALL LOGIK BÖRJAR HÄR
+  JavaScript bestämmer hur sidan BETER SIG
+  (vad som händer när man klickar, scrollar etc.)
+============================================= -->
+<script>
+
+  // =============================================
+  // CAROUSEL-LOGIK
+  // Hanterar vänster/höger-pilarna i portfolio
+  // =============================================
+
+  var aktuelltIndex = 0; // Håller koll på vilken position carouselen är på
+
+  function scrollaCarousel(riktning) {
+    var band = document.getElementById('carousel-band');
+    var kort = band.querySelectorAll('.video-kort');
+    var kortBredd = 320 + 24; // kortets bredd (320px) + gap (24px)
+    var totalKort = kort.length;
+
+    // Flytta indexet ett steg i rätt riktning
+    aktuelltIndex = aktuelltIndex + riktning;
+
+    // Se till att vi inte åker utanför listan
+    if (aktuelltIndex < 0) {
+      aktuelltIndex = 0;
+    }
+    if (aktuelltIndex > totalKort - 1) {
+      aktuelltIndex = totalKort - 1;
+    }
+
+    // Beräkna hur långt vi ska flytta bandet
+    var förflyttning = aktuelltIndex * kortBredd;
+
+    // Flytta bandet med CSS transform
+    band.style.transform = 'translateX(-' + förflyttning + 'px)';
+  }
+
+  // =============================================
+  // MODAL-LOGIK
+  // Hanterar "Boka möte"-popup-fönstret
+  // =============================================
+
+  function öppnaModal() {
+    var modal = document.getElementById('boka-modal');
+    modal.classList.add('aktiv'); // Visar modalen
+    document.body.style.overflow = 'hidden'; // Låser scrollning bakom
+  }
+
+  function stängModal() {
+    var modal = document.getElementById('boka-modal');
+    modal.classList.remove('aktiv'); // Döljer modalen
+    document.body.style.overflow = ''; // Låser upp scrollning igen
+  }
+
+  // Stäng modalen om man klickar på den mörka bakgrunden (utanför lådan)
+  document.getElementById('boka-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      stängModal();
+    }
+  });
+
+  // Stäng modalen med Escape-tangenten på tangentbordet
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      stängModal();
+    }
+  });
+
+</script>
+<!-- SLUT PÅ JAVASCRIPT -->
+
 
 </body>
 </html>
+
+<!--
+=================================================================
+STEG-FÖR-STEG GUIDE FÖR DIG SOM ÄR NYBÖRJARE
+=================================================================
+
+Du har nu en komplett hemsida. Här är exakt vad du ska göra härnäst.
+
+─────────────────────────────────────────────
+1. SÅ HÄR ÄNDRAR DU DIN E-POSTADRESS
+─────────────────────────────────────────────
+Sök i filen efter:   din@mail.se
+Det finns 3 ställen. Byt alla mot din riktiga adress.
+Exempel: par@plundmedia.se
+
+─────────────────────────────────────────────
+2. SÅ HÄR ÄNDRAR DU DITT TELEFONNUMMER
+─────────────────────────────────────────────
+Sök i filen efter:   07X-XXX XX XX
+Byt ut mot ditt riktiga nummer, till exempel: 070-123 45 67
+
+Sök också efter:     07XXXXXXXXX  (i href="tel:...")
+Byt ut mot ditt nummer utan mellanslag: 0701234567
+
+─────────────────────────────────────────────
+3. SÅ HÄR KLISTRAR DU IN TIKTOK-VIDEO
+─────────────────────────────────────────────
+a) Gå till TikTok.com och hitta videon du vill visa
+b) Klicka på pilen (dela) → välj "Embed"
+c) Kopiera all kod (börjar med <blockquote class="tiktok-embed"...)
+d) Öppna index.html i en textredigerare (t.ex. VS Code eller Anteckningar)
+e) Hitta kommentaren:
+      HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 1)
+f) Ta bort de rader som innehåller "video-placeholder"
+   (allt från <div class="video-placeholder"> till och med </div>)
+g) Klistra in TikTok-koden istället
+
+OBS: TikTok-koden innehåller också en <script>-tagg. Den kan du
+klistra in längst ner i filen, precis innan </body>.
+
+─────────────────────────────────────────────
+4. SÅ HÄR KLISTRAR DU IN INSTAGRAM-VIDEO
+─────────────────────────────────────────────
+a) Gå till Instagram.com och öppna inlägget du vill visa
+b) Klicka på "..." (de tre prickarna) → välj "Embed"
+c) Klicka "Copy embed code"
+d) Koden börjar med: <blockquote class="instagram-media"...
+e) Klistra in den precis som TikTok (se steg 3 ovan)
+
+OBS: Lägg till denna rad i <head>-sektionen om den saknas:
+<script async src="//www.instagram.com/embed.js"></script>
+
+─────────────────────────────────────────────
+5. SÅ HÄR LÄGGER DU TILL CALENDLY
+─────────────────────────────────────────────
+a) Logga in på calendly.com
+b) Gå till ditt event → Share → "Add to website"
+c) Välj "Inline embed"
+d) Kopiera koden (innehåller <div class="calendly-inline-widget"...)
+
+ALTERNATIV A – i kontakt-sektionen:
+   Hitta kommentaren: HÄR LÄGGER DU TILL CALENDLY EMBED
+   Ta bort <div class="calendly-plats">...</div>
+   Klistra in din Calendly-kod istället
+
+ALTERNATIV B – i popup-modalen:
+   Hitta div:en med id="calendly-embed-plats"
+   Ta bort <p>-taggen inuti
+   Klistra in din Calendly-kod inuti div:en
+
+─────────────────────────────────────────────
+6. SÅ HÄR LÄGGER DU TILL FLER PORTFOLIO-VIDEOS
+─────────────────────────────────────────────
+a) Hitta kommentaren: VIDEO-KORT 2 BÖRJAR
+b) Kopiera allt från den kommentaren till: SLUT PÅ VIDEO-KORT 2
+c) Klistra in kopian precis efter SLUT PÅ VIDEO-KORT 5
+d) Byt titel och beskrivning
+e) Klistra in ny embed-kod
+
+─────────────────────────────────────────────
+7. SÅ HÄR PUBLICERAR DU PÅ GITHUB PAGES
+─────────────────────────────────────────────
+a) Gå till ditt GitHub-repo
+b) Ladda upp/ersätt index.html
+c) Gå till Settings → Pages → välj "main" branch
+d) Spara — sidan är live inom 1–2 minuter
+
+=================================================================
+-->
