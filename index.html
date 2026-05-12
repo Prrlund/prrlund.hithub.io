@@ -4,56 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plund Media</title>
-
-  <!--
-  =============================================
-  TYPSNITT (FONT)
-  =============================================
-  Här laddar vi in typsnittet "DM Sans" från Google Fonts.
-  Det är modernt, clean och liknar Satoshi.
-  Du behöver inte ändra något här.
-  =============================================
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
-
-  <!--
-  =============================================
-  CSS - ALL STYLING BÖRJAR HÄR
-  Allt som bestämmer hur sidan SER UT
-  (färger, storlekar, avstånd, animationer)
-  =============================================
-  -->
   <style>
-
-    /* =============================================
-       GLOBALA INSTÄLLNINGAR
-       Här sätter vi grundregler för HELA sidan.
-       CSS-variabler gör det enkelt att ändra
-       färger på ett enda ställe.
-    ============================================= */
     :root {
-      --bakgrund:      #0a0a0a;   /* Sidans bakgrundsfärg (nästan svart) */
-      --yta:           #111111;   /* Kortens bakgrundsfärg (lite ljusare svart) */
-      --yta-hover:     #1a1a1a;   /* Kortens färg när du hovrar */
-      --kant:          #222222;   /* Linjefärg (diskret grå) */
-      --text-huvud:    #f0f0f0;   /* Huvudtext (nästan vit) */
-      --text-dimpad:   #888888;   /* Dimpad text (grå) */
-      --accent:        #e8d5b0;   /* Accentfärg (varm beige/guld) */
-      --accent-mjuk:   rgba(232, 213, 176, 0.08); /* Mjuk accentbakgrund */
+      --bakgrund:      #0a0a0a;
+      --yta:           #111111;
+      --yta-hover:     #1a1a1a;
+      --kant:          #222222;
+      --text-huvud:    #f0f0f0;
+      --text-dimpad:   #888888;
+      --accent:        #ffbf32;
+      --accent-mjuk:   rgba(255, 191, 50, 0.08);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth; /* Mjuk scrollning när du klickar nav-länkarna */
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       background-color: var(--bakgrund);
       color: var(--text-huvud);
@@ -62,60 +29,34 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 100px 0; }
 
-    /* Begränsar innehållets bredd och centrerar det */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Alla sektioner har lite luft ovanför och under */
-    section {
-      padding: 100px 0;
-    }
-
-    /* =============================================
-       HEADER / NAVBAR - STYLING
-    ============================================= */
+    /* HEADER */
     header {
-      position: fixed;           /* Headern sitter kvar uppe när du scrollar */
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;             /* Ligger ovanpå allt annat */
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
       background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(16px); /* Skapar "frostat glas"-effekten */
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--kant);
       padding: 18px 0;
       transition: all 0.3s ease;
     }
-
     .header-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Logo vänster, nav mitten, ikoner höger */
+      justify-content: space-between;
     }
 
-    /* Logotypen "Plund Media" */
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text-huvud);
-      text-decoration: none;
+    /* LOGO — SVG-versionen */
+    .logo-svg {
+      height: 38px;
+      width: auto;
+      display: block;
     }
 
-    .logo span {
-      color: var(--accent); /* "Media"-delen i accentfärg */
-    }
-
-    /* Navigationslänkarna i mitten */
-    nav {
-      display: flex;
-      gap: 32px;
-    }
-
+    nav { display: flex; gap: 32px; }
     nav a {
       color: var(--text-dimpad);
       text-decoration: none;
@@ -124,64 +65,36 @@
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
+    nav a:hover { color: var(--text-huvud); }
 
-    nav a:hover {
-      color: var(--text-huvud);
-    }
-
-    /* Social ikoner till höger i headern */
-    .social-icons {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
+    .social-icons { display: flex; gap: 16px; align-items: center; }
     .social-icons a {
       color: var(--text-dimpad);
       text-decoration: none;
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border: 1px solid var(--kant);
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
+    .social-icons a:hover { color: var(--accent); border-color: var(--accent); }
+    .social-icons svg { width: 16px; height: 16px; fill: currentColor; }
 
-    .social-icons a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .social-icons svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    /* =============================================
-       HERO SECTION - STYLING
-    ============================================= */
+    /* HERO */
     #hero {
       padding-top: 180px;
       padding-bottom: 120px;
       position: relative;
       overflow: hidden;
     }
-
-    /* Dekorativt suddigt ljussken i bakgrunden */
     #hero::before {
       content: '';
       position: absolute;
-      top: -100px;
-      left: -100px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(232, 213, 176, 0.06) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255, 191, 50, 0.06) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-etikett {
       display: inline-block;
       font-size: 0.75rem;
@@ -189,26 +102,20 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid rgba(232, 213, 176, 0.3);
+      border: 1px solid rgba(255, 191, 50, 0.3);
       padding: 6px 14px;
       border-radius: 100px;
       margin-bottom: 32px;
     }
-
     .hero-rubrik {
-      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Anpassar sig till skärmstorlek */
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.04em;
       max-width: 800px;
       margin-bottom: 28px;
     }
-
-    .hero-rubrik em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
+    .hero-rubrik em { font-style: normal; color: var(--accent); }
     .hero-text {
       font-size: 1.1rem;
       color: var(--text-dimpad);
@@ -216,15 +123,6 @@
       margin-bottom: 48px;
       line-height: 1.8;
     }
-
-    /* Knappen "Boka möte" */
-    .hero-knappar {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
     .knapp-primär {
       background: var(--accent);
       color: #0a0a0a;
@@ -237,20 +135,13 @@
       cursor: pointer;
       transition: all 0.2s;
       letter-spacing: -0.01em;
+      text-decoration: none;
+      display: inline-block;
     }
+    .knapp-primär:hover { background: #ffd060; transform: translateY(-1px); }
 
-    .knapp-primär:hover {
-      background: #f5e4c4;
-      transform: translateY(-1px);
-    }
-
-    /* =============================================
-       PORTFOLIO SECTION - STYLING
-    ============================================= */
-    #portfolio {
-      border-top: 1px solid var(--kant);
-    }
-
+    /* PORTFOLIO */
+    #portfolio { border-top: 1px solid var(--kant); }
     .sektion-rubrik {
       font-size: 0.75rem;
       font-weight: 600;
@@ -259,56 +150,32 @@
       color: var(--accent);
       margin-bottom: 16px;
     }
-
     .sektion-titel {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 16px;
     }
-
-    .sektion-beskrivning {
-      color: var(--text-dimpad);
-      max-width: 500px;
-      margin-bottom: 56px;
-    }
-
-    /* Carousel-containern */
-    .carousel-wrapper {
-      position: relative;
-    }
-
-    /* Det här är "fönstret" - man ser bara det som passar in */
-    .carousel-fönster {
-      overflow: hidden;
-      border-radius: 16px;
-    }
-
-    /* Det här är "bandet" som glider i sidled */
+    .sektion-beskrivning { color: var(--text-dimpad); max-width: 500px; margin-bottom: 56px; }
+    .carousel-wrapper { position: relative; }
+    .carousel-fönster { overflow: hidden; border-radius: 16px; }
     .carousel-band {
       display: flex;
       gap: 24px;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-
-    /* Varje videokort i carouselen */
     .video-kort {
-      flex: 0 0 320px;       /* Varje kort är 320px brett och krymper inte */
+      flex: 0 0 320px;
       background: var(--yta);
       border: 1px solid var(--kant);
       border-radius: 16px;
       overflow: hidden;
       transition: border-color 0.2s;
     }
-
-    .video-kort:hover {
-      border-color: rgba(232, 213, 176, 0.3);
-    }
-
-    /* Platsen där embed-koden läggs */
+    .video-kort:hover { border-color: rgba(255, 191, 50, 0.3); }
     .video-embed-plats {
       width: 100%;
-      aspect-ratio: 9/16;    /* TikTok-format (stående video) */
+      aspect-ratio: 9/16;
       background: #0f0f0f;
       display: flex;
       align-items: center;
@@ -316,116 +183,38 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Placeholder-text när ingen embed lagts in ännu */
-    .video-placeholder {
-      text-align: center;
-      color: var(--text-dimpad);
-      padding: 24px;
-    }
-
+    .video-placeholder { text-align: center; color: var(--text-dimpad); padding: 24px; }
     .video-placeholder .play-ikon {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       border: 2px solid var(--kant);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
     }
-
-    .video-placeholder .play-ikon svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--text-dimpad);
-      margin-left: 3px;
-    }
-
-    .video-info {
-      padding: 20px;
-    }
-
-    .video-info h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .video-info p {
-      font-size: 0.85rem;
-      color: var(--text-dimpad);
-    }
-
-    /* Pilar för att navigera carouselen */
-    .carousel-pilar {
-      display: flex;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
+    .video-placeholder .play-ikon svg { width: 20px; height: 20px; fill: var(--text-dimpad); margin-left: 3px; }
+    .video-info { padding: 20px; }
+    .video-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .video-info p { font-size: 0.85rem; color: var(--text-dimpad); }
+    .carousel-pilar { display: flex; gap: 12px; margin-top: 32px; }
     .carousel-pil {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       background: var(--yta);
       border: 1px solid var(--kant);
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       transition: all 0.2s;
       color: var(--text-huvud);
     }
+    .carousel-pil:hover { border-color: var(--accent); color: var(--accent); }
+    .carousel-pil svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    .carousel-pil:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .carousel-pil svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* =============================================
-       OM MIG SECTION - STYLING
-    ============================================= */
-    #om-mig {
-      border-top: 1px solid var(--kant);
-    }
-
-    .om-mig-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .om-mig-text p {
-      color: var(--text-dimpad);
-      margin-bottom: 20px;
-      font-size: 1.05rem;
-      line-height: 1.85;
-    }
-
-    .om-mig-text p strong {
-      color: var(--text-huvud);
-      font-weight: 600;
-    }
-
-    /* Faktakorten (de tre lådorna med siffror) */
-    .fakta-kort-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
+    /* OM MIG */
+    #om-mig { border-top: 1px solid var(--kant); }
+    .om-mig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .om-mig-text p { color: var(--text-dimpad); margin-bottom: 20px; font-size: 1.05rem; line-height: 1.85; }
+    .om-mig-text p strong { color: var(--text-huvud); font-weight: 600; }
+    .fakta-kort-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .fakta-kort {
       background: var(--yta);
       border: 1px solid var(--kant);
@@ -433,43 +222,14 @@
       padding: 28px 24px;
       transition: border-color 0.2s;
     }
+    .fakta-kort:hover { border-color: rgba(255, 191, 50, 0.25); }
+    .fakta-kort.stor { grid-column: span 2; }
+    .fakta-siffra { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .fakta-etikett { font-size: 0.85rem; color: var(--text-dimpad); }
 
-    .fakta-kort:hover {
-      border-color: rgba(232, 213, 176, 0.25);
-    }
-
-    .fakta-kort.stor {
-      grid-column: span 2; /* Det breda kortet tar upp båda kolumnerna */
-    }
-
-    .fakta-siffra {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .fakta-etikett {
-      font-size: 0.85rem;
-      color: var(--text-dimpad);
-    }
-
-    /* =============================================
-       KONTAKT SECTION - STYLING
-    ============================================= */
-    #kontakt {
-      border-top: 1px solid var(--kant);
-    }
-
-    .kontakt-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
+    /* KONTAKT */
+    #kontakt { border-top: 1px solid var(--kant); }
+    .kontakt-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     .kontakt-text .stor-rubrik {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 800;
@@ -477,29 +237,11 @@
       line-height: 1.15;
       margin-bottom: 24px;
     }
-
-    .kontakt-text .stor-rubrik em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .kontakt-text p {
-      color: var(--text-dimpad);
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .kontakt-info-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 40px;
-    }
-
+    .kontakt-text .stor-rubrik em { font-style: normal; color: var(--accent); }
+    .kontakt-text p { color: var(--text-dimpad); font-size: 1.05rem; line-height: 1.8; }
+    .kontakt-info-lista { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
     .kontakt-rad {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      display: flex; align-items: center; gap: 16px;
       background: var(--yta);
       border: 1px solid var(--kant);
       border-radius: 12px;
@@ -508,621 +250,203 @@
       color: var(--text-huvud);
       transition: all 0.2s;
     }
-
-    .kontakt-rad:hover {
-      border-color: var(--accent);
-    }
-
+    .kontakt-rad:hover { border-color: var(--accent); }
     .kontakt-ikon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: var(--accent-mjuk);
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
+    .kontakt-ikon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .kontakt-rad-text small { font-size: 0.75rem; color: var(--text-dimpad); display: block; margin-bottom: 2px; }
+    .kontakt-rad-text span { font-weight: 600; font-size: 0.95rem; }
 
-    .kontakt-ikon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.75;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--kant); padding: 48px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { display: flex; align-items: center; text-decoration: none; }
+    .footer-logo-svg { height: 28px; width: auto; }
+    .footer-info { font-size: 0.85rem; color: var(--text-dimpad); text-align: center; }
+    .footer-info a { color: var(--text-dimpad); text-decoration: none; }
+    .footer-info a:hover { color: var(--accent); }
+    .footer-copy { font-size: 0.8rem; color: var(--text-dimpad); opacity: 0.6; }
 
-    .kontakt-rad-text small {
-      font-size: 0.75rem;
-      color: var(--text-dimpad);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .kontakt-rad-text span {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    
-
-    /* =============================================
-       FOOTER - STYLING
-    ============================================= */
-    footer {
-      border-top: 1px solid var(--kant);
-      padding: 48px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-logo {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-huvud);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .footer-logo span {
-      color: var(--accent);
-    }
-
-    .footer-info {
-      font-size: 0.85rem;
-      color: var(--text-dimpad);
-      text-align: center;
-    }
-
-    .footer-info a {
-      color: var(--text-dimpad);
-      text-decoration: none;
-    }
-
-    .footer-info a:hover {
-      color: var(--accent);
-    }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--text-dimpad);
-      opacity: 0.6;
-    }
-
-    /* =============================================
-       RESPONSIV DESIGN (för telefoner)
-       Reglerna här gäller bara på små skärmar.
-    ============================================= */
     @media (max-width: 768px) {
-      nav { display: none; } /* Göm nav på mobil (kan byggas ut med hamburger-meny) */
-
-      .om-mig-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .kontakt-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .video-kort {
-        flex: 0 0 260px;
-      }
+      nav { display: none; }
+      .om-mig-grid { grid-template-columns: 1fr; gap: 48px; }
+      .kontakt-inner { grid-template-columns: 1fr; gap: 48px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .video-kort { flex: 0 0 260px; }
     }
-
   </style>
 </head>
-
 <body>
 
-<!-- =============================================
-  HÄR BÖRJAR HEADERN
-  Den sitter fast uppe på sidan hela tiden.
-============================================= -->
 <header>
   <div class="container">
     <div class="header-inner">
 
-      <!-- Logotypen längst till vänster -->
-      <a href="#/" class="logo">Plund <span>Media</span></a>
+      <!-- LOGO: SVG-logon inlagd direkt -->
+      <a href="#/" aria-label="Plund Media">
+        <img src="Plund_logo.svg" alt="Plund Media" class="logo-svg" />
+      </a>
 
-      <!-- Navigeringslänkarna i mitten -->
       <nav>
         <a href="#portfolio">Portfolio</a>
         <a href="#om-mig">Om mig</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
 
-      <!-- Social-ikoner till höger -->
       <div class="social-icons">
-
-        <!--
-        =============================================
-        HÄR ÄNDRAR DU DIN INSTAGRAM-LÄNK
-        Byt ut "prrlund" mot ditt Instagram-användarnamn
-        =============================================
-        -->
         <a href="https://www.instagram.com/prrlund" target="_blank" title="Instagram">
-          <!-- Instagram-ikon (SVG) -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-
-        <!--
-        =============================================
-        HÄR ÄNDRAR DU DIN TIKTOK-LÄNK
-        Byt ut "prrlund" mot ditt TikTok-användarnamn
-        =============================================
-        -->
         <a href="https://www.tiktok.com/@prrlund" target="_blank" title="TikTok">
-          <!-- TikTok-ikon (SVG) -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg>
         </a>
-
       </div>
     </div>
   </div>
 </header>
-<!-- HÄR SLUTAR HEADERN -->
 
-
-<!-- =============================================
-  HÄR BÖRJAR HERO-SEKTIONEN
-  Det är det stora välkomstblocket överst på sidan.
-============================================= -->
 <section id="hero">
   <div class="container">
-
-    <!-- Liten etikett-text ovanför rubriken -->
     <div class="hero-etikett">PÄR UTFORSKAR FÖRETAG</div>
-
-    <!-- Den stora rubriken -->
     <h1 class="hero-rubrik">
-      Mindre reklam. Mer Människor, story och <br/>
+      Mindre reklam. Mer människor, story och<br/>
       <em>verklighet.</em>
     </h1>
-
-    <!-- Kortare beskrivningstext under rubriken -->
     <p class="hero-text">
       Hej, jag heter Pär och jag driver Plund Media. Jag är genuint nyfiken på hur
       företag fungerar, varför de finns och vilka människor som bygger dem. Mitt mål
       är enkelt: visa mer än en produkt. Visa storyn. Visa människorna. Visa äktheten.
     </p>
-
-    <!-- Knapp som öppnar Calendly-modalen -->
-   <a href="#kontakt" class="knapp-primär" style="text-decoration:none; display:inline-block;">
-  Ta kontakt →
-</a>
-
+    <a href="#kontakt" class="knapp-primär">Ta kontakt →</a>
   </div>
 </section>
-<!-- HÄR SLUTAR HERO-SEKTIONEN -->
 
-
-<!-- =============================================
-  HÄR BÖRJAR PORTFOLIO-SEKTIONEN
-  Här visas dina videor i en horisontell carousel.
-============================================= -->
 <section id="portfolio">
   <div class="container">
-
     <p class="sektion-rubrik">Mina videor</p>
     <h2 class="sektion-titel">Portfolio</h2>
-    <p class="sektion-beskrivning">
-      Bakom kulisserna-videos där jag utforskar företag som en nyfiken outsider.
-    </p>
-
-    <!-- Carousel-wrapper (omsluter hela slidern) -->
+    <p class="sektion-beskrivning">Bakom kulisserna-videos där jag utforskar företag som en nyfiken outsider.</p>
     <div class="carousel-wrapper">
-
-      <!-- Fönstret som döljer det som inte syns -->
       <div class="carousel-fönster">
-
-        <!-- Bandet som glider i sidled när du klickar pilarna -->
         <div class="carousel-band" id="carousel-band">
-
-
-<div class="video-kort">
-  <div class="video-embed-plats">
-
-   <iframe
-  src="reload.mp4"
-  width="100%"
-  height="100%"
-  style="border:none; position:absolute; top:0; left:0; width:100%; height:100%;"
-  allowfullscreen
-  allow="encrypted-media">
-</iframe>
-
-  </div>
-  <div class="video-info">
-    <h3>Reload Vending</h3>
-    <p>Hur funkar egentligen en vending machine business bakom kulisserna?</p>
-  </div>
-</div>
-
-          <!-- SLUT PÅ VIDEO-KORT 1 -->
-
-          
+          <div class="video-kort">
+            <div class="video-embed-plats">
+              <iframe src="reload.mp4" width="100%" height="100%" style="border:none; position:absolute; top:0; left:0; width:100%; height:100%;" allowfullscreen allow="encrypted-media"></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Reload Vending</h3>
+              <p>Hur funkar egentligen en vending machine business bakom kulisserna?</p>
+            </div>
+          </div>
         </div>
-        <!-- Slut på carousel-bandet -->
-
       </div>
-      <!-- Slut på carousel-fönstret -->
-
-      <!-- Pilknapparna under carouselen -->
       <div class="carousel-pilar">
-
-        <!-- Vänsterpil -->
         <button class="carousel-pil" onclick="scrollaCarousel(-1)" title="Föregående">
           <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
         </button>
-
-        <!-- Högerpil -->
         <button class="carousel-pil" onclick="scrollaCarousel(1)" title="Nästa">
           <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
         </button>
-
       </div>
-
     </div>
-    <!-- Slut på carousel-wrapper -->
-
   </div>
 </section>
-<!-- HÄR SLUTAR PORTFOLIO-SEKTIONEN -->
 
-
-<!-- =============================================
-  HÄR BÖRJAR OM MIG-SEKTIONEN
-  Här presenterar du dig och idén bakom Plund Media.
-============================================= -->
 <section id="om-mig">
   <div class="container">
-
     <div class="om-mig-grid">
-
-      <!-- Vänstersidan: Text -->
       <div class="om-mig-text">
         <p class="sektion-rubrik">Vem är jag?</p>
         <h2 class="sektion-titel">Bakom kameran</h2>
-
-       <p>
-  Pär här hej. Österbottning i Helsingfors, studerar socialpsykologi, skapar content.
-</p>
-
-<p>
-  Jag är genuint fascinerad av företag och människorna som bygger dem. Inte på ett tråkigt sätt. More like, what? Hur funkar det här egentligen?
-</p>
-
-             
-        </p>
-
+        <p>Pär här hej. Österbottning i Helsingfors, studerar socialpsykologi, skapar content.</p>
+        <p>Jag är genuint fascinerad av företag och människorna som bygger dem. Inte på ett tråkigt sätt. More like, what? Hur funkar det här egentligen?</p>
       </div>
-
-      <!-- Högersidan: Faktakort -->
       <div class="fakta-kort-grid">
-
         <div class="fakta-kort">
           <div class="fakta-siffra">100%</div>
           <div class="fakta-etikett">Autentiskt content, inget manus och ingen reklam-känsla</div>
         </div>
-
         <div class="fakta-kort">
           <div class="fakta-siffra">Bakom kulisserna</div>
-          <div class="fakta-etikett">Så här funkar företaget på riktigt.
-</div>
+          <div class="fakta-etikett">Så här funkar företaget på riktigt.</div>
         </div>
-
         <div class="fakta-kort stor">
           <div class="fakta-siffra">Er story</div>
           <div class="fakta-etikett">Varje video görs kring ert företag och er historia.</div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </section>
-<!-- HÄR SLUTAR OM MIG-SEKTIONEN -->
 
-
-<!-- =============================================
-  HÄR BÖRJAR KONTAKT-SEKTIONEN
-============================================= -->
 <section id="kontakt">
   <div class="container">
-
     <div class="kontakt-inner">
-
-      <!-- Vänstersida: Text och kontaktinfo -->
       <div class="kontakt-text">
-
         <p class="sektion-rubrik">Kom igång</p>
         <h2 class="stor-rubrik">
           Vill ni att jag kommer och gör en video om <em>ert företag?</em>
         </h2>
-        <p>
-          Hör av er så pratar vi om hur det
-          kan se ut för just ert företag.
-        </p>
-
+        <p>Hör av er så pratar vi om hur det kan se ut för just ert företag.</p>
         <div class="kontakt-info-lista">
-
-          <!--
-          =============================================
-          HÄR ÄNDRAR DU DIN MAIL
-          Byt ut "din@mail.se" mot din riktiga e-postadress
-          på BÅDA ställena nedan (i href och i span-taggen)
-          =============================================
-          -->
-          <a href="plundcollab@gmail.com" class="kontakt-rad">
+          <a href="mailto:plundcollab@gmail.com" class="kontakt-rad">
             <div class="kontakt-ikon">
               <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="kontakt-rad-text">
               <small>E-post</small>
-              <span>plundcollab@gmail.com</span>  <!-- ← ÄNDRA DETTA TILL DIN MAIL -->
+              <span>plundcollab@gmail.com</span>
             </div>
           </a>
-
-       
-          -->
-          <a href="tel:+358 44 2404042" class="kontakt-rad">
+          <a href="tel:+35844240042" class="kontakt-rad">
             <div class="kontakt-ikon">
               <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 0117 1.18 2 2 0 0119.1 3.17v3a2 2 0 01-1.44 1.93 16 16 0 01-4.4 1.16A16.18 16.18 0 0117 14.4a2 2 0 011.92-1.44z"/></svg>
             </div>
             <div class="kontakt-rad-text">
               <small>Telefon</small>
-              <span>+358 44 2404042</span>  <!-- ← ÄNDRA DETTA TILL DITT NUMMER -->
+              <span>+358 44 2404042</span>
             </div>
           </a>
-
         </div>
       </div>
-
-      <!-- Högersida: Calendly-plats -->
-      <div>
-
-
-      </div>
-
+      <div></div>
     </div>
-
   </div>
 </section>
-<!-- HÄR SLUTAR KONTAKT-SEKTIONEN -->
 
-
-<!-- =============================================
-  HÄR BÖRJAR FOOTERN
-  Den syns längst ner på sidan.
-============================================= -->
 <footer>
   <div class="container">
     <div class="footer-inner">
-
-      <!-- Logotypen i footern -->
-      <a href="#/" class="footer-logo">Plund <span>Media</span></a>
-
-      <!-- Kontaktinfo i mitten -->
+      <a href="#/" class="footer-logo" aria-label="Plund Media">
+        <img src="Plund_logo.svg" alt="Plund Media" class="footer-logo-svg" />
+      </a>
       <div class="footer-info">
-        <!--
-        =============================================
-        HÄR ÄNDRAR DU MAIL I FOOTERN
-        Byt ut "din@mail.se" mot din e-postadress
-        =============================================
-        -->
-        <a href="mailto:din@mail.se">plundcollab@gmail.com</a>
+        <a href="mailto:plundcollab@gmail.com">plundcollab@gmail.com</a>
         &nbsp;·&nbsp;
-        <!--
-        =============================================
-        HÄR ÄNDRAR DU TELEFONNUMMER I FOOTERN
-        Byt ut "07X-XXX XX XX" mot ditt nummer
-        =============================================
-        -->
-        <a href="tel:07XXXXXXXXX">+358 44 2404042</a>
+        <a href="tel:+35844240042">+358 44 2404042</a>
       </div>
-
-      <!-- Copyright-text -->
-      <div class="footer-copy">
-        <!--
-        Byt ut årtalet om det behövs
-        -->
-        © 2026 Plund Media
-      </div>
-
+      <div class="footer-copy">© 2026 Plund Media</div>
     </div>
   </div>
 </footer>
-<!-- HÄR SLUTAR FOOTERN -->
 
-
-
-
-
-  </div>
-</div>
-
-
-<!-- =============================================
-  JAVASCRIPT - ALL LOGIK BÖRJAR HÄR
-  JavaScript bestämmer hur sidan BETER SIG
-  (vad som händer när man klickar, scrollar etc.)
-============================================= -->
 <script>
-
-  // =============================================
-  // CAROUSEL-LOGIK
-  // Hanterar vänster/höger-pilarna i portfolio
-  // =============================================
-
-  var aktuelltIndex = 0; // Håller koll på vilken position carouselen är på
-
+  var aktuelltIndex = 0;
   function scrollaCarousel(riktning) {
     var band = document.getElementById('carousel-band');
     var kort = band.querySelectorAll('.video-kort');
-    var kortBredd = 320 + 24; // kortets bredd (320px) + gap (24px)
+    var kortBredd = 320 + 24;
     var totalKort = kort.length;
-
-    // Flytta indexet ett steg i rätt riktning
     aktuelltIndex = aktuelltIndex + riktning;
-
-    // Se till att vi inte åker utanför listan
-    if (aktuelltIndex < 0) {
-      aktuelltIndex = 0;
-    }
-    if (aktuelltIndex > totalKort - 1) {
-      aktuelltIndex = totalKort - 1;
-    }
-
-    // Beräkna hur långt vi ska flytta bandet
-    var förflyttning = aktuelltIndex * kortBredd;
-
-    // Flytta bandet med CSS transform
-    band.style.transform = 'translateX(-' + förflyttning + 'px)';
+    if (aktuelltIndex < 0) aktuelltIndex = 0;
+    if (aktuelltIndex > totalKort - 1) aktuelltIndex = totalKort - 1;
+    band.style.transform = 'translateX(-' + (aktuelltIndex * kortBredd) + 'px)';
   }
-
-  // =============================================
-  // MODAL-LOGIK
-  // Hanterar "Boka möte"-popup-fönstret
-  // =============================================
-
-  function öppnaModal() {
-    var modal = document.getElementById('boka-modal');
-    modal.classList.add('aktiv'); // Visar modalen
-    document.body.style.overflow = 'hidden'; // Låser scrollning bakom
-  }
-
-  function stängModal() {
-    var modal = document.getElementById('boka-modal');
-    modal.classList.remove('aktiv'); // Döljer modalen
-    document.body.style.overflow = ''; // Låser upp scrollning igen
-  }
-
-  // Stäng modalen om man klickar på den mörka bakgrunden (utanför lådan)
-  document.getElementById('boka-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      stängModal();
-    }
-  });
-
-  // Stäng modalen med Escape-tangenten på tangentbordet
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      stängModal();
-    }
-  });
-
 </script>
-<!-- SLUT PÅ JAVASCRIPT -->
-
 </body>
 </html>
-
-<!--
-=================================================================
-STEG-FÖR-STEG GUIDE FÖR DIG SOM ÄR NYBÖRJARE
-=================================================================
-
-Du har nu en komplett hemsida. Här är exakt vad du ska göra härnäst.
-
-─────────────────────────────────────────────
-1. SÅ HÄR ÄNDRAR DU DIN E-POSTADRESS
-─────────────────────────────────────────────
-Sök i filen efter:   din@mail.se
-Det finns 3 ställen. Byt alla mot din riktiga adress.
-Exempel: par@plundmedia.se
-
-─────────────────────────────────────────────
-2. SÅ HÄR ÄNDRAR DU DITT TELEFONNUMMER
-─────────────────────────────────────────────
-Sök i filen efter:   07X-XXX XX XX
-Byt ut mot ditt riktiga nummer, till exempel: 070-123 45 67
-
-Sök också efter:     07XXXXXXXXX  (i href="tel:...")
-Byt ut mot ditt nummer utan mellanslag: 0701234567
-
-─────────────────────────────────────────────
-3. SÅ HÄR KLISTRAR DU IN TIKTOK-VIDEO
-─────────────────────────────────────────────
-a) Gå till TikTok.com och hitta videon du vill visa
-b) Klicka på pilen (dela) → välj "Embed"
-c) Kopiera all kod (börjar med <blockquote class="tiktok-embed"...)
-d) Öppna index.html i en textredigerare (t.ex. VS Code eller Anteckningar)
-e) Hitta kommentaren:
-      HÄR KLISTRAR DU IN DIN TIKTOK EMBED-KOD (Video 1)
-f) Ta bort de rader som innehåller "video-placeholder"
-   (allt från <div class="video-placeholder"> till och med </div>)
-g) Klistra in TikTok-koden istället
-
-OBS: TikTok-koden innehåller också en <script>-tagg. Den kan du
-klistra in längst ner i filen, precis innan </body>.
-
-─────────────────────────────────────────────
-4. SÅ HÄR KLISTRAR DU IN INSTAGRAM-VIDEO
-─────────────────────────────────────────────
-a) Gå till Instagram.com och öppna inlägget du vill visa
-b) Klicka på "..." (de tre prickarna) → välj "Embed"
-c) Klicka "Copy embed code"
-d) Koden börjar med: <blockquote class="instagram-media"...
-e) Klistra in den precis som TikTok (se steg 3 ovan)
-
-OBS: Lägg till denna rad i <head>-sektionen om den saknas:
-<script async src="//www.instagram.com/embed.js"></script>
-
-─────────────────────────────────────────────
-5. SÅ HÄR LÄGGER DU TILL CALENDLY
-─────────────────────────────────────────────
-a) Logga in på calendly.com
-b) Gå till ditt event → Share → "Add to website"
-c) Välj "Inline embed"
-d) Kopiera koden (innehåller <div class="calendly-inline-widget"...)
-
-ALTERNATIV A – i kontakt-sektionen:
-   Hitta kommentaren: HÄR LÄGGER DU TILL CALENDLY EMBED
-   Ta bort <div class="calendly-plats">...</div>
-   Klistra in din Calendly-kod istället
-
-ALTERNATIV B – i popup-modalen:
-   Hitta div:en med id="calendly-embed-plats"
-   Ta bort <p>-taggen inuti
-   Klistra in din Calendly-kod inuti div:en
-
-─────────────────────────────────────────────
-6. SÅ HÄR LÄGGER DU TILL FLER PORTFOLIO-VIDEOS
-─────────────────────────────────────────────
-a) Hitta kommentaren: VIDEO-KORT 2 BÖRJAR
-b) Kopiera allt från den kommentaren till: SLUT PÅ VIDEO-KORT 2
-c) Klistra in kopian precis efter SLUT PÅ VIDEO-KORT 5
-d) Byt titel och beskrivning
-e) Klistra in ny embed-kod
-
-─────────────────────────────────────────────
-7. SÅ HÄR PUBLICERAR DU PÅ GITHUB PAGES
-─────────────────────────────────────────────
-a) Gå till ditt GitHub-repo
-b) Ladda upp/ersätt index.html
-c) Gå till Settings → Pages → välj "main" branch
-d) Spara — sidan är live inom 1–2 minuter
-
-=================================================================
--->
