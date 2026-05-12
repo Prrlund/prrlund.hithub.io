@@ -41,7 +41,14 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--kant);
       padding: 18px 0;
-      transition: all 0.3s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    header.dold {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
     }
     .header-inner {
       display: flex;
@@ -51,7 +58,7 @@
 
     /* LOGO — SVG-versionen */
     .logo-svg {
-      height: 100px;
+      height: 56px;
       width: auto;
       display: block;
     }
@@ -423,7 +430,7 @@
   <div class="container">
     <div class="footer-inner">
       <a href="#/" class="footer-logo" aria-label="Plund Media">
-        <img src="Plund_logo.svg" alt="Plund Media" class="footer-logo-svg" />
+        <img src="plund_transparent.svg" alt="Plund Media" class="footer-logo-svg" />
       </a>
       <div class="footer-info">
         <a href="mailto:plundcollab@gmail.com">plundcollab@gmail.com</a>
@@ -436,6 +443,19 @@
 </footer>
 
 <script>
+  // Header fade vid scroll
+  var senastScroll = 0;
+  window.addEventListener('scroll', function() {
+    var nuScroll = window.pageYOffset;
+    var header = document.querySelector('header');
+    if (nuScroll > senastScroll && nuScroll > 80) {
+      header.classList.add('dold');
+    } else {
+      header.classList.remove('dold');
+    }
+    senastScroll = nuScroll;
+  });
+
   var aktuelltIndex = 0;
   function scrollaCarousel(riktning) {
     var band = document.getElementById('carousel-band');
