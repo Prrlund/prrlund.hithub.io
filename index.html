@@ -331,34 +331,53 @@
     </p>
     <a href="#kontakt" class="knapp-primär">Ta kontakt →</a>
   </div>
-</section>
-<div class="carousel-band" id="carousel-band">
-
-  <div class="video-kort">
-    <div class="video-embed-plats">
-      <video style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" controls>
-        <source src="reload.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-info">
-      <h3>Reload Vending</h3>
-      <p>Hur funkar egentligen en vending machine business bakom kulisserna?</p>
-    </div>
-  </div>
-
-  <div class="video-kort">
-    <div class="video-embed-plats">
-      <video style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" controls>
-        <source src="kaffia.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-info">
-      <h3>Kaffia</h3>
-      <p>Pär utforskar Jakobstads mysigaste kafé.</p>
-    </div>
-  </div>
-
 </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <p class="sektion-rubrik">Mina videor</p>
+    <h2 class="sektion-titel">Portfolio</h2>
+    <p class="sektion-beskrivning">Bakom kulisserna-videos där jag utforskar företag som en nyfiken outsider.</p>
+    <div class="carousel-wrapper">
+      <div class="carousel-fönster">
+        <div class="carousel-band" id="carousel-band">
+
+          <div class="video-kort">
+            <div class="video-embed-plats">
+              <video style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" controls>
+                <source src="reload.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-info">
+              <h3>Reload Vending</h3>
+            </div>
+          </div>
+
+          <div class="video-kort">
+            <div class="video-embed-plats">
+              <video style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;" controls>
+                <source src="kaffia.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-info">
+              <h3>Kaffia</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="carousel-pilar">
+        <button class="carousel-pil" onclick="scrollaCarousel(-1)" title="Föregående">
+          <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+        <button class="carousel-pil" onclick="scrollaCarousel(1)" title="Nästa">
+          <svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="om-mig">
   <div class="container">
